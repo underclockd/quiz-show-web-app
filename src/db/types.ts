@@ -7,34 +7,22 @@ declare global {
 }
 
 export interface Board {
-    single: Round & { dailyDouble: number }
-    double: Round & { dailyDoubles: [number, number] }
-    final: {
-        categoryName: string
-        clue: string
-        answer: string
-    }
+    single: Round
+    double: Round
+    final: Round
 }
 
 export interface Round {
-    category1: Category
-    category2: Category
-    category3: Category
-    category4: Category
-    category5: Category
-    category6: Category
+    categories: Category[]
 }
 
 export interface Category {
     name: string
-    clue1: Clue
-    clue2: Clue
-    clue3: Clue
-    clue4: Clue
-    clue5: Clue
+    clues: Clue[]
 }
 
 export interface Clue {
     text: string
-    answer: string
+    response: string
+    media?: string[]
 }
