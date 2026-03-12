@@ -6,9 +6,7 @@ declare global {
     }
 }
 
-export { };
-
-interface Board {
+export interface Board {
     single: Round & { dailyDouble: number }
     double: Round & { dailyDoubles: [number, number] }
     final: {
@@ -18,7 +16,7 @@ interface Board {
     }
 }
 
-interface Round {
+export interface Round {
     category1: Category
     category2: Category
     category3: Category
@@ -27,16 +25,16 @@ interface Round {
     category6: Category
 }
 
-interface Category {
+export interface Category {
     name: string
-    clue1: Clue[]
-    clue2: Clue[]
-    clue3: Clue[]
-    clue4: Clue[]
-    clue5: Clue[]
+    clue1: Clue
+    clue2: Clue
+    clue3: Clue
+    clue4: Clue
+    clue5: Clue
 }
 
-interface Clue {
+export interface Clue {
     text: string
     answer: string
 }
