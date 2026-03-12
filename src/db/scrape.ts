@@ -5,6 +5,7 @@ export default async function getGame(gameID: number): Promise<Board> {
     const page = await fetch(`https://www.j-archive.com/showgame.php?game_id=${gameID}`);
     const html = await page.text();
     const dom = new JSDOM(html);
+
     return parseGame(dom);
 }
 
