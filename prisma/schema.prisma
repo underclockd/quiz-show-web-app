@@ -1,0 +1,19 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/app/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+generator json {
+  provider = "prisma-json-types-generator"
+}
+
+model Game {
+  id Int @id
+
+  /// [GameData]
+  data Json
+}

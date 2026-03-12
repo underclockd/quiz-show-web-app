@@ -9,16 +9,22 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@prisma/adapter-libsql": "^7.5.0",
+    "@prisma/client": "^7.5.0",
+    "jsdom": "^28.1.0",
     "next": "16.1.6",
     "react": "19.2.3",
     "react-dom": "19.2.3"
   },
   "devDependencies": {
+    "@types/jsdom": "^28.0.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
+    "prisma": "^7.5.0",
+    "prisma-json-types-generator": "^4.1.1",
     "typescript": "^5"
   },
   "ignoreScripts": [
