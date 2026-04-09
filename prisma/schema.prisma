@@ -9,6 +9,7 @@ datasource db {
 
 generator json {
   provider = "prisma-json-types-generator"
+  url      = env("DATABASE_URL")
 }
 
 model Game {
