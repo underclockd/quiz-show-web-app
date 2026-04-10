@@ -1,12 +1,16 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 
+// BRIEF: Temporary(?) component for searching db/scraping site
+//        for user-inputted game ID.
 export default function GameEntryField() {
     const router = useRouter();
+
+    // The user-requested game ID
     const [requestedID, setRequestedID] = useState("");
     const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+        // Ensure the input wasn't a blank string and is a positive integer.
         const rawVal = e.target.value;
         if (rawVal === "") {
             setRequestedID("");

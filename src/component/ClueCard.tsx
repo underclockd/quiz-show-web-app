@@ -3,15 +3,25 @@ import { useState } from "react";
 import styles from "@/app/game/[id]/board.module.css";
 import type { Clue } from "@/db/types";
 
-export default function ClueCard({value, clue}: {value: number, clue: Clue}) {
+// TODO: Make clue take up the entire screen when prompt is displayed.
+export default function ClueCard({value, clue, onClueFinished}: {value: number, clue: Clue, onClueFinished: () => void}) {
     // 0: Dollar value displayed
     // 1: Prompt displayed
     // 2: Answer displayed
     const [clickStage, setClickState] = useState(0);
 
+    // When the answer is revealed, update the revealedCount from GameBoard
     const handleClick = () => {
-        if (clickStage < 2)
-            setClickState(clickStage+1);
+        switch (clickStage) {
+            case 0:
+                setClickState(1);
+                break;
+            case 1:
+                setClickState(2);
+                onClueFinished();
+                break;
+
+        }
     };
 
     let displayContent;
