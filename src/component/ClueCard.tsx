@@ -36,6 +36,27 @@ export default function ClueCard({value, clue, onClueFinished}: {value: number, 
             displayContent = clue.response;
             break;
     }
+
+    return (
+        <div className={styles.clueCard}>
+            {clickStage === 0 && (
+                <div 
+                    onClick={handleClick}
+                    style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
+                >
+                    ${value}
+                </div>
+                    
+            )}
+
+            {clickStage > 0 && (
+                <div className={styles.fullscreenCard} onClick={handleClick}>
+                    {clickStage === 1 ? clue.text : clue.response}
+                </div>
+            )}
+        </div>
+    );
+
     return (
         <div 
             className={styles.clueCard}
