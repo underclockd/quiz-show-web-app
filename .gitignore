@@ -42,7 +42,6 @@ next-env.d.ts
 
 /src/app/generated/prisma
 
-# don't commit the database or migrations, but leave the lockfile
+# don't commit the local sqlite database
 dev.sqlite3
-/prisma/migrations/*
-!/prisma/migrations/migration_lock.toml
+.env*.local
