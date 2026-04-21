@@ -40,6 +40,21 @@ export default function GameBoard({ gameData }: {gameData: Board}) {
         });
     };
 
+    if (currentRound === 'final') {
+        const finalCategoryData = gameData.final?.categories?.[0];
+        return (
+            <div className={styles.finalRoundContainer}>
+                <div className={styles.finalCategory}>
+                    {finalCategoryData?.name || "Final Category"}
+                </div>
+
+                <div className={styles.finalClue}>
+                    {finalCategoryData?.clues?.[0]?.text || "Final Clue Text"}
+                </div>
+            </div>
+        );
+    }
+    
     return (
         <div className={styles.boardContainer}>
             {/* Construct the category columns. Clues are created when each column is created. */}
