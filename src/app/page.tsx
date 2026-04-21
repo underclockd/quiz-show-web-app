@@ -13,7 +13,7 @@ export default async function Home() {
         <GameEntryField />
         <ul>
           
-          <h2>Popular Boards</h2>
+          <h2>Recent Boards</h2>
           {games.map((game) => {
               const gameData = game.data;
               const firstCategory = gameData.single?.categories?.[0]?.name || "First Category";
