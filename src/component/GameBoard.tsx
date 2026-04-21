@@ -6,6 +6,32 @@ import { Category } from "@/db/types";
 import { Board } from "@/db/types";
 import CategoryColumn from "@/component/CategoryColumn";
 
+function FinalRoundDisplay({ categoryData }: { categoryData: Category }) {
+    // 0: Showing Clue
+    // 1: Showing Answer
+    const [showAnswer, setShowAnswer] = useState(false);
+
+    const clue = categoryData?.clues?.[0];
+
+    const handleClick = () => {
+        if (!showAnswer) {
+            setShowAnswer(true);
+        }
+    };
+
+    return (
+        <div className={styles.finalRoundContainer} onClick={handleClick}>
+            <div className={styles.finalCategory}>
+                {categoryData?.name || "Final Category"}
+            </div>
+
+            <div className={styles.finalClue}>
+                {showAnswer ? clue?.response : clue?.text}
+            </div>
+        </div>
+    );
+}
+
 export default function GameBoard({ gameData }: {gameData: Board}) {
     // Current round of the game
     const [currentRound, setCurrentRound] = useState<'single' | 'double' | 'final'>('single');
@@ -42,25 +68,16 @@ export default function GameBoard({ gameData }: {gameData: Board}) {
 
     if (currentRound === 'final') {
         const finalCategoryData = gameData.final?.categories?.[0];
-        return (
-            <div className={styles.finalRoundContainer}>
-                <div className={styles.finalCategory}>
-                    {finalCategoryData?.name || "Final Category"}
-                </div>
-
-                <div className={styles.finalClue}>
-                    {finalCategoryData?.clues?.[0]?.text || "Final Clue Text"}
-                </div>
-            </div>
-        );
+        return <FinalRoundDisplay categoryData={finalCategoryData} />;
     }
-    
+
+    const baseValue = currentRound === "double" ? 400 : 200;
     return (
         <div className={styles.boardContainer}>
             {/* Construct the category columns. Clues are created when each column is created. */}
             {gameData[currentRound]?.categories?.map((data, index) => {
                 return (
-                    <CategoryColumn key={data.name || index} categoryData={data} clueCompleteHandler={handleClueComplete} />
+                    <CategoryColumn key={data.name || index} categoryData={data} clueCompleteHandler={handleClueComplete} baseValue={baseValue} />
                 );
             })}
         </div>

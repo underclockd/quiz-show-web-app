@@ -2,7 +2,7 @@ import styles from "@/app/game/[id]/board.module.css";
 import { Category } from "@/db/types";
 import ClueCard from "@/component/ClueCard";
 
-export default function CategoryColumn({ categoryData, clueCompleteHandler }:  {categoryData: Category, clueCompleteHandler: () => void}) {
+export default function CategoryColumn({ categoryData, clueCompleteHandler, baseValue }:  {categoryData: Category, clueCompleteHandler: () => void, baseValue: number}) {
     return (
         <div className={styles.column}>
             {/* Category title */}
@@ -11,7 +11,7 @@ export default function CategoryColumn({ categoryData, clueCompleteHandler }:  {
             </div>
             {/* Construct the clues for each category */}
             {categoryData.clues.map((clue, index) => (
-                <ClueCard key={index} value={(index+1) * 200} clue={clue} onClueFinished={clueCompleteHandler}/>
+                <ClueCard key={index} value={(index+1) * baseValue} clue={clue} onClueFinished={clueCompleteHandler}/>
             ))}
         </div>
     );
