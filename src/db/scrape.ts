@@ -46,9 +46,19 @@ function parseClue(td: HTMLElement): Clue {
     const clueTD = td.querySelector("td.clue_text");
     const clueEm = td.querySelector("td.clue_text em");
     const clueA = td.querySelectorAll("td.clue_text a");
-
-    if (!clueTD) throw new Error("Could not find clue text");
-    if (!clueEm) throw new Error("Could not find clue answer");
+    
+    if (!clueTD) {
+        return {
+            text: "Unrevealed",
+            response: "N/A"
+        };
+    }
+    if (!clueEm) {
+        return {
+            text: clueTD.textContent || "Unknown",
+            response: "N/A"
+        };
+    }
 
     const text = clueTD.textContent;
     const response = clueEm.textContent;
