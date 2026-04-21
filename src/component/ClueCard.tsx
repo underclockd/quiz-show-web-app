@@ -18,24 +18,14 @@ export default function ClueCard({value, clue, onClueFinished}: {value: number, 
                 break;
             case 1:
                 setClickState(2);
+                break;
+            case 2:
+                setClickState(3);
                 onClueFinished();
                 break;
 
         }
     };
-
-    let displayContent;
-    switch (clickStage) {
-        case 0:
-            displayContent = `$${value}`;
-            break;
-        case 1:
-            displayContent = clue.text;
-            break;
-        default:
-            displayContent = clue.response;
-            break;
-    }
 
     return (
         <div className={styles.clueCard}>
@@ -49,24 +39,11 @@ export default function ClueCard({value, clue, onClueFinished}: {value: number, 
                     
             )}
 
-            {clickStage > 0 && (
+            {(clickStage === 1 || clickStage === 2) && (
                 <div className={styles.fullscreenCard} onClick={handleClick}>
                     {clickStage === 1 ? clue.text : clue.response}
                 </div>
             )}
-        </div>
-    );
-
-    return (
-        <div 
-            className={styles.clueCard}
-            onClick={handleClick}
-            style={{
-                cursor: clickStage < 2 ? "pointer" : "default",
-                fontSize: clickStage > 0 ? "1rem" : "2rem"
-            }}
-        >
-            {displayContent}
         </div>
     );
 }
