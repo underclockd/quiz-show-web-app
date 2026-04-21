@@ -1,24 +1,22 @@
-import { JSDOM } from "jsdom";
+import { HTMLElement, parse } from "node-html-parser";
 import { Board, Category, Clue, Round } from "./types";
 
 export default async function getGame(gameID: number): Promise<Board> {
     const page = await fetch(`https://www.j-archive.com/showgame.php?game_id=${gameID}`);
     const html = await page.text();
-    const dom = new JSDOM(html);
+    const root = parse(html);
 
-    return parseGame(dom);
+    return parseGame(root);
 }
 
-function parseGame(dom: JSDOM): Board {
-    const document = dom.window.document;
-
-    const singleDiv = document.querySelector("div#jeopardy_round");
+function parseGame(root: HTMLElement): Board {
+    const singleDiv = root.querySelector("div#jeopardy_round");
     if (!singleDiv) throw new Error("Could not find normal round div");
 
-    const doubleDiv = document.querySelector("div#double_jeopardy_round");
+    const doubleDiv = root.querySelector("div#double_jeopardy_round");
     if (!doubleDiv) throw new Error("Could not find double round div");
 
-    const finalDiv = document.querySelector("div#final_jeopardy_round");
+    const finalDiv = root.querySelector("div#final_jeopardy_round");
     if (!finalDiv) throw new Error("Could not find final round div");
 
     return {
@@ -28,30 +26,23 @@ function parseGame(dom: JSDOM): Board {
     }
 }
 
-function parseRound(div: Element): Round {
+function parseRound(div: HTMLElement): Round {
     const categoryTD = div.querySelectorAll(".category_name");
     const cluesTD = div.querySelectorAll("td.clue");
 
-    const categoryNames: string[] = [];
-    categoryTD.forEach((category) =>
-        categoryNames.push(category.textContent ?? "")
-    );
+    const categoryNames: string[] = categoryTD.map((category) => category.textContent ?? "");
 
-    const clues: Clue[] = [];
-    cluesTD.forEach((clue) => clues.push(parseClue(clue)));
+    const clues: Clue[] = cluesTD.map((clue) => parseClue(clue));
 
-    let categories: Category[] = [];
-    categoryNames.forEach((name, categoryIndex) => categories.push(
-        {
-            name,
-            clues: clues.filter((_, clueIndex) => clueIndex % categoryNames.length === categoryIndex)
-        }
-    ))
+    const categories: Category[] = categoryNames.map((name, categoryIndex) => ({
+        name,
+        clues: clues.filter((_, clueIndex) => clueIndex % categoryNames.length === categoryIndex)
+    }));
 
     return { categories };
 }
 
-function parseClue(td: Element): Clue {
+function parseClue(td: HTMLElement): Clue {
     const clueTD = td.querySelector("td.clue_text");
     const clueEm = td.querySelector("td.clue_text em");
     const clueA = td.querySelectorAll("td.clue_text a");
