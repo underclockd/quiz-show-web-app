@@ -1,15 +1,47 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Oswald } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
+
+// ITC Korinna Std — the classic Jeopardy! clue font, self-hosted.
+const korinna = localFont({
+  variable: "--font-korinna",
+  display: "swap",
+  src: [
+    {
+      path: "./fonts/itc-korinna-std/korinna-regular.otf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "./fonts/itc-korinna-std/korinna-std-italic.otf",
+      weight: "400",
+      style: "italic",
+    },
+    {
+      path: "./fonts/itc-korinna-std/korinna-std-bold.otf",
+      weight: "700",
+      style: "normal",
+    },
+    {
+      path: "./fonts/itc-korinna-std/korinna-std-heavy.otf",
+      weight: "900",
+      style: "normal",
+    },
+  ],
+});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+// Oswald: condensed sans — free stand-in for Swiss 911 Compressed,
+// which is used for category headers and dollar values on the show.
+const oswald = Oswald({
+  variable: "--font-oswald",
   subsets: ["latin"],
+  weight: ["500", "700"],
 });
 
 export const metadata: Metadata = {
@@ -24,7 +56,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body
+        className={`${geistSans.variable} ${oswald.variable} ${korinna.variable}`}
+      >
         {children}
       </body>
     </html>

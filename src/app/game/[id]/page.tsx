@@ -1,6 +1,6 @@
+import GameBoard from "@/components/GameBoard/GameBoard";
 import db from "@/db";
 import scrape from "@/db/scrape";
-import GameBoard from "@/component/GameBoard";
 import { notFound } from "next/navigation";
 
 export default async function Game({ params }: { params: Promise<{ id: string }> }) {
@@ -22,6 +22,6 @@ export default async function Game({ params }: { params: Promise<{ id: string }>
     }
 
     return (
-        <GameBoard gameData={game.data}/>
+        <GameBoard gameData={game.data} />
     )
 }

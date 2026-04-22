@@ -1,0 +1,96 @@
+.clueCard {
+    background-color: var(--tile-bg);
+    background-image: var(--tile-surface-image);
+    background-size: var(--tile-surface-size);
+    background-repeat: var(--tile-surface-repeat);
+    background-position: var(--tile-surface-position);
+    background-blend-mode: var(--tile-surface-blend-mode);
+    box-shadow: var(--tile-surface-shadow);
+    color: var(--clue-value-fg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Dollar values on the show are Swiss 911 Compressed (very condensed sans). */
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(2rem, 4.5vw, 4.5rem);
+    letter-spacing: 0.01em;
+    cursor: pointer;
+    text-shadow: var(--text-shadow-jeopardy-value-lg);
+}
+
+/* Placeholder that reserves the grid cell after a clue is fully revealed.
+   Transparent so the board background shows through, matching the show. */
+.emptySlot {
+    background-color: transparent;
+}
+
+.fullscreenCard {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--tile-bg);
+    background-image: var(--tile-surface-image);
+    background-size: var(--tile-surface-size);
+    background-repeat: var(--tile-surface-repeat);
+    background-position: var(--tile-surface-position);
+    background-blend-mode: var(--tile-surface-blend-mode);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+
+    padding: 4rem;
+    box-shadow: var(--tile-surface-shadow);
+    transform-origin: top left;
+    animation: clueExpand 600ms linear;
+    will-change: transform;
+
+    z-index: 9999;
+    cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.fullscreenContent {
+    /* Clue text is traditionally white, while dollar values are gold */
+    color: var(--clue-text-fg);
+    font-family: var(--font-clue);
+    font-size: clamp(2rem, 5vw, 5rem);
+    font-weight: 700;
+    line-height: 1.15;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    text-shadow: var(--text-shadow-jeopardy-clue-lg);
+}
+
+@keyframes clueExpand {
+    from {
+        transform: translate(
+            var(--fullscreen-origin-translate-x, 0px),
+            var(--fullscreen-origin-translate-y, 0px)
+        ) scale(
+            var(--fullscreen-origin-scale-x, 1),
+            var(--fullscreen-origin-scale-y, 1)
+        );
+    }
+
+    to {
+        transform: translate(0, 0) scale(1, 1);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .fullscreenCard {
+        animation: none;
+        will-change: auto;
+    }
+
+    .fullscreenContent {
+        transform: none;
+    }
+}
