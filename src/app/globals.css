@@ -1,13 +1,33 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  /* Jeopardy! color palette */
+  --jeopardy-blue: #060CE9;         /* Iconic board blue */
+  --jeopardy-gold: #FFCC00;         /* Dollar values / accents */
+  --jeopardy-white: #FFFFFF;        /* Clue text */
+  --jeopardy-black: #000000;        /* Board grid / background */
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* Semantic aliases */
+  --background: var(--jeopardy-black);
+  --foreground: var(--jeopardy-white);
+  --board-bg: var(--jeopardy-black);
+  --tile-bg: var(--jeopardy-blue);
+  --category-bg: var(--jeopardy-blue);
+  --category-fg: var(--jeopardy-white);
+  --clue-value-fg: var(--jeopardy-gold);
+  --clue-text-fg: var(--jeopardy-white);
+
+  --font-display: "Swiss 911 Compressed BT", "Swiss 911",
+    var(--font-oswald, "Oswald"), "Helvetica Inserat", "Bebas Neue",
+    Impact, "Arial Narrow", sans-serif;
+  --font-clue: var(--font-korinna, "Korinna"), "ITC Korinna Std",
+    "ITC Korinna", Georgia, serif;
+  --font-logo: "Gyparody", "Helvetica Inserat", Impact, sans-serif;
+
+  --font-body: var(--font-geist-sans), system-ui, -apple-system, "Segoe UI",
+    Helvetica, Arial, sans-serif;
+
+  /* Text treatment — single tight drop shadow, as seen on the board. */
+  --text-shadow-jeopardy: 3px 3px 0 rgba(0, 0, 0, 0.75);
+  --text-shadow-jeopardy-lg: 4px 4px 0 rgba(0, 0, 0, 0.75);
 }
 
 html,
@@ -19,7 +39,7 @@ body {
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -33,10 +53,4 @@ body {
 a {
   color: inherit;
   text-decoration: none;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
 }

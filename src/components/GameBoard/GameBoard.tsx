@@ -1,10 +1,9 @@
 "use client";
 import { useState } from "react";
 
-import styles from "@/app/game/[id]/board.module.css";
-import { Category } from "@/db/types";
-import { Board } from "@/db/types";
-import CategoryColumn from "@/component/CategoryColumn";
+import CategoryColumn from "@/components/CategoryColumn/CategoryColumn";
+import { Board, Category } from "@/db/types";
+import styles from "./GameBoard.module.css";
 
 function FinalRoundDisplay({ categoryData }: { categoryData: Category }) {
     // 0: Showing Clue
@@ -32,7 +31,7 @@ function FinalRoundDisplay({ categoryData }: { categoryData: Category }) {
     );
 }
 
-export default function GameBoard({ gameData }: {gameData: Board}) {
+export default function GameBoard({ gameData }: { gameData: Board }) {
     // Current round of the game
     const [currentRound, setCurrentRound] = useState<'single' | 'double' | 'final'>('single');
 
@@ -50,10 +49,8 @@ export default function GameBoard({ gameData }: {gameData: Board}) {
     const handleClueComplete = () => {
         setRevealedCount((prevCount) => {
             const newCount = prevCount + 1;
-            if (newCount >= totalClues)
-            {
-                switch (currentRound)
-                {
+            if (newCount >= totalClues) {
+                switch (currentRound) {
                     case 'single':
                         setCurrentRound('double');
                         return 0;

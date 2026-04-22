@@ -1,0 +1,46 @@
+.clueCard {
+    background-color: var(--tile-bg);
+    color: var(--clue-value-fg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Dollar values on the show are Swiss 911 Compressed (very condensed sans). */
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(2rem, 4.5vw, 4.5rem);
+    letter-spacing: 0.01em;
+    cursor: pointer;
+    text-shadow: var(--text-shadow-jeopardy-lg);
+
+    flex: 1;
+}
+
+.fullscreenCard {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--tile-bg);
+
+    /* Clue text is traditionally white, while dollar values are gold */
+    color: var(--clue-text-fg);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-family: var(--font-clue);
+    /* Massive font size since it has the whole screen */
+    font-size: clamp(2rem, 5vw, 5rem);
+    font-weight: 700;
+    line-height: 1.15;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    padding: 4rem; /* Keep text away from the absolute edges */
+    text-shadow: var(--text-shadow-jeopardy-lg);
+
+    z-index: 9999;
+    cursor: pointer;
+}

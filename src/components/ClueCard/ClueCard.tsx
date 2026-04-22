@@ -1,10 +1,11 @@
 "use client";
 import { useState } from "react";
-import styles from "@/app/game/[id]/board.module.css";
+
 import type { Clue } from "@/db/types";
+import styles from "./ClueCard.module.css";
 
 // TODO: Make clue take up the entire screen when prompt is displayed.
-export default function ClueCard({value, clue, onClueFinished}: {value: number, clue: Clue, onClueFinished: () => void}) {
+export default function ClueCard({ value, clue, onClueFinished }: { value: number, clue: Clue, onClueFinished: () => void }) {
     // 0: Dollar value displayed
     // 1: Prompt displayed
     // 2: Answer displayed
@@ -28,15 +29,11 @@ export default function ClueCard({value, clue, onClueFinished}: {value: number, 
     };
 
     return (
-        <div className={styles.clueCard}>
+        <>
             {clickStage === 0 && (
-                <div 
-                    onClick={handleClick}
-                    style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
-                >
+                <div className={styles.clueCard} onClick={handleClick}>
                     ${value}
                 </div>
-                    
             )}
 
             {(clickStage === 1 || clickStage === 2) && (
@@ -44,6 +41,6 @@ export default function ClueCard({value, clue, onClueFinished}: {value: number, 
                     {clickStage === 1 ? clue.text : clue.response}
                 </div>
             )}
-        </div>
+        </>
     );
 }
