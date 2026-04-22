@@ -1,9 +1,9 @@
 :root {
   /* Jeopardy! color palette */
-  --jeopardy-blue: #060CE9;         /* Iconic board blue */
-  --jeopardy-gold: #FFCC00;         /* Dollar values / accents */
-  --jeopardy-white: #FFFFFF;        /* Clue text */
-  --jeopardy-black: #000000;        /* Board grid / background */
+  --jeopardy-blue: rgb(11, 20, 127);
+  --jeopardy-gold: rgb(250, 184, 91);
+  --jeopardy-white: #FFFFFF;
+  --jeopardy-black: #000000;
 
   /* Semantic aliases */
   --background: var(--jeopardy-black);
@@ -14,20 +14,46 @@
   --category-fg: var(--jeopardy-white);
   --clue-value-fg: var(--jeopardy-gold);
   --clue-text-fg: var(--jeopardy-white);
+  --tile-surface-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.011 0.024' numOctaves='4' seed='7' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)' opacity='0.52'/%3E%3C/svg%3E");
+  --tile-surface-image: var(--tile-surface-noise);
+  --tile-surface-size: cover;
+  --tile-surface-repeat: no-repeat;
+  --tile-surface-position: center center;
+  --tile-surface-blend-mode: multiply;
+  --tile-surface-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.14);
 
-  --font-display: "Swiss 911 Compressed BT", "Swiss 911",
-    var(--font-oswald, "Oswald"), "Helvetica Inserat", "Bebas Neue",
-    Impact, "Arial Narrow", sans-serif;
-  --font-clue: var(--font-korinna, "Korinna"), "ITC Korinna Std",
-    "ITC Korinna", Georgia, serif;
+  --font-display: "Swiss 911 Compressed BT", "Swiss 911", var(--font-oswald, "Oswald"), "Helvetica Inserat", "Bebas Neue", Impact, "Arial Narrow", sans-serif;
+  --font-clue: var(--font-korinna, "Korinna"), "ITC Korinna Std", "ITC Korinna", Georgia, serif;
   --font-logo: "Gyparody", "Helvetica Inserat", Impact, sans-serif;
 
   --font-body: var(--font-geist-sans), system-ui, -apple-system, "Segoe UI",
     Helvetica, Arial, sans-serif;
 
-  /* Text treatment — single tight drop shadow, as seen on the board. */
-  --text-shadow-jeopardy: 3px 3px 0 rgba(0, 0, 0, 0.75);
-  --text-shadow-jeopardy-lg: 4px 4px 0 rgba(0, 0, 0, 0.75);
+  /* Scale shadows with the text size so large board lettering keeps
+        the heavy Jeopardy-style edge treatment. */
+  --text-shadow-jeopardy: 0.055em 0.055em 0 rgba(0, 0, 0, 0.8);
+  --text-shadow-jeopardy-value-lg:
+    0.02em 0 0 rgba(0, 0, 0, 0.96),
+    -0.02em 0 0 rgba(0, 0, 0, 0.96),
+    0 0.02em 0 rgba(0, 0, 0, 0.96),
+    0 -0.02em 0 rgba(0, 0, 0, 0.96),
+    0.02em 0.02em 0 rgba(0, 0, 0, 0.96),
+    -0.02em 0.02em 0 rgba(0, 0, 0, 0.96),
+    0.02em -0.02em 0 rgba(0, 0, 0, 0.96),
+    -0.02em -0.02em 0 rgba(0, 0, 0, 0.96),
+    0.075em 0.075em 0 rgba(0, 0, 0, 0.78);
+  --text-shadow-jeopardy-clue-lg:
+    0.017em 0 0 rgba(0, 0, 0, 0.94),
+    -0.017em 0 0 rgba(0, 0, 0, 0.94),
+    0 0.017em 0 rgba(0, 0, 0, 0.94),
+    0 -0.017em 0 rgba(0, 0, 0, 0.94),
+    0.017em 0.017em 0 rgba(0, 0, 0, 0.94),
+    -0.017em 0.017em 0 rgba(0, 0, 0, 0.94),
+    0.017em -0.017em 0 rgba(0, 0, 0, 0.94),
+    -0.017em -0.017em 0 rgba(0, 0, 0, 0.94),
+    0.06em 0.06em 0 rgba(0, 0, 0, 0.76);
 }
 
 html,
