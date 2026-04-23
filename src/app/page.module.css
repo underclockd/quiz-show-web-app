@@ -1,106 +1,208 @@
-/* page.module.css */
-
 .pageWrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   min-height: 100vh;
-  padding: 4rem 2rem;
-  font-family: 'Inter', system-ui, sans-serif;
+  width: 100vw;
+  padding: clamp(1.25rem, 2vw, 2rem);
+  display: flex;
+  justify-content: center;
 }
 
 .main {
-  width: 100%;
-  max-width: 1100px;
+  width: min(100%, 1400px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1rem, 2vw, 1.5rem);
+}
+
+.heroPanel,
+.boardShelf {
+  position: relative;
+  overflow: hidden;
+  border: 4px solid var(--board-bg);
+  background-color: rgba(0, 0, 0, 0.78);
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14);
+}
+
+.heroPanel {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: clamp(1rem, 2.5vw, 1.75rem) clamp(1rem, 4vw, 4rem);
+  min-height: 0;
+  gap: 0.5rem;
 }
 
-/* Typography */
+.heroPanel::before,
+.boardShelf::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.06), transparent 24%),
+    radial-gradient(circle at top, rgba(250, 184, 91, 0.14), transparent 38%);
+  pointer-events: none;
+}
+
+.kicker {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  line-height: 1;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--clue-value-fg);
+  text-shadow: var(--text-shadow-jeopardy-value-lg);
+}
+
 .main h1 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 3.5rem;
-  font-weight: 600;
-  font-style: italic;
-  color: #F5EEE6;
-  margin: 0 0 0.5rem 0;
-  letter-spacing: -0.5px;
+  position: relative;
+  z-index: 1;
+  max-width: 12ch;
+  font-family: var(--font-display);
+  font-size: clamp(3.2rem, 9vw, 7rem);
+  line-height: 0.94;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--clue-text-fg);
+  text-shadow: var(--text-shadow-jeopardy-clue-lg);
 }
 
 .subtitle {
-  color: #8ab4c9;
-  font-size: 1.1rem;
-  font-weight: 300;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  margin-bottom: 3rem;
-  text-align: center;
+  position: relative;
+  z-index: 1;
+  max-width: 40rem;
+  font-family: var(--font-clue);
+  font-size: clamp(1.2rem, 2.6vw, 1.75rem);
+  line-height: 1.25;
+  color: rgba(255, 255, 255, 0.92);
+  text-shadow: var(--text-shadow-jeopardy);
 }
 
-/* Entry Field Wrapper */
 .entryFieldWrapper {
-  margin-bottom: 4rem;
   width: 100%;
-  max-width: 400px;
+  max-width: 80rem;
+  position: relative;
+  z-index: 1;
 }
 
-/* Grid Layout */
+.boardShelf {
+  padding: clamp(1rem, 2vw, 1.25rem);
+}
+
+.sectionHeader {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.sectionHeader h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--clue-text-fg);
+  text-shadow: var(--text-shadow-jeopardy-clue-lg);
+}
+
 .jeopardyGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 10px;
   width: 100%;
+  background-color: var(--board-bg);
+  padding: 10px;
+  position: relative;
+  z-index: 1;
 }
 
-/* Card Links */
 .cardLink {
-  text-decoration: none;
   display: block;
 }
 
-/* The Monitors (Cards) */
 .card {
-  background-color: rgba(13, 61, 86, 0.45);
-  border: 1px solid rgba(211, 175, 86, 0.3);
-  border-radius: 12px;
-  padding: 2.5rem 2rem;
-  text-align: center;
-  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-  backdrop-filter: blur(10px);
+  background-color: var(--tile-bg);
+  background-image: var(--tile-surface-image);
+  background-size: var(--tile-surface-size);
+  background-repeat: var(--tile-surface-repeat);
+  background-position: var(--tile-surface-position);
+  background-blend-mode: var(--tile-surface-blend-mode);
+  box-shadow: var(--tile-surface-shadow);
+  min-height: 12rem;
+  padding: 1rem 1.1rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.65rem;
   position: relative;
-  overflow: hidden;
   height: 100%;
+  transition: transform 180ms ease, filter 180ms ease;
 }
 
-/* The Gold Top Accent */
-.card::before {
-  content: '';
+.card::after {
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, #D3AF56, transparent);
-  opacity: 0.7;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.2);
 }
 
 .card:hover {
-  transform: translateY(-4px);
-  border-color: #D3AF56;
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+  transform: translateY(-3px);
+  filter: brightness(1.08);
+}
+
+.cardEyebrow {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  line-height: 1;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--clue-text-fg);
+  text-shadow: var(--text-shadow-jeopardy);
 }
 
 .card h3 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.75rem;
-  color: #D3AF56;
-  margin: 0 0 1rem 0;
-  font-weight: 600;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 0.95;
+  font-weight: 700;
+  color: var(--clue-value-fg);
+  text-shadow: var(--text-shadow-jeopardy-value-lg);
 }
 
 .card p {
-  color: #8ab4c9;
-  font-size: 1rem;
-  margin: 0;
+  font-family: var(--font-clue);
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  line-height: 1.15;
+  color: var(--clue-text-fg);
+  text-transform: uppercase;
+  text-shadow: var(--text-shadow-jeopardy);
+}
+
+@media (max-width: 700px) {
+  .pageWrapper {
+    padding: 0.75rem;
+  }
+
+  .heroPanel {
+    padding-top: 0.85rem;
+    padding-bottom: 0.85rem;
+  }
+
+  .sectionHeader {
+    margin-bottom: 0.75rem;
+  }
 }

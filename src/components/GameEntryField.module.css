@@ -1,0 +1,125 @@
+.entryForm {
+  width: min(100%, 80rem);
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas:
+    "input button"
+    "hint hint";
+  gap: 8px;
+  align-items: stretch;
+}
+
+.label {
+  grid-column: 1 / -1;
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 2vw, 1.5rem);
+  line-height: 1;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--clue-value-fg);
+  text-shadow: var(--text-shadow-jeopardy-value-lg);
+}
+
+.input,
+.button {
+  min-height: 3.75rem;
+  border: 0;
+  outline: 0;
+  background-color: var(--tile-bg);
+  background-image: var(--tile-surface-image);
+  background-size: var(--tile-surface-size);
+  background-repeat: var(--tile-surface-repeat);
+  background-position: var(--tile-surface-position);
+  background-blend-mode: var(--tile-surface-blend-mode);
+  box-shadow: var(--tile-surface-shadow);
+}
+
+.input {
+  grid-area: input;
+  width: 100%;
+  padding: 0 0.85rem;
+  color: var(--clue-text-fg);
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 3vw, 2rem);
+  line-height: 1;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-shadow: var(--text-shadow-jeopardy-clue-lg);
+  appearance: textfield;
+}
+
+.input::placeholder {
+  color: rgba(255, 255, 255, 0.42);
+}
+
+.input::-webkit-outer-spin-button,
+.input::-webkit-inner-spin-button {
+  margin: 0;
+  appearance: none;
+}
+
+.hint {
+  grid-area: hint;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.5rem;
+  padding: 0.45rem 0.85rem 0;
+  color: rgba(255, 255, 255, 0.86);
+  font-family: var(--font-clue);
+  font-size: clamp(0.95rem, 1.8vw, 1.05rem);
+  line-height: 1.1;
+  text-transform: uppercase;
+  text-align: center;
+  text-shadow: var(--text-shadow-jeopardy);
+}
+
+.button {
+  grid-area: button;
+  min-width: 8.5rem;
+  padding: 0 1.35rem;
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2.3vw, 1.6rem);
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--clue-value-fg);
+  text-shadow: var(--text-shadow-jeopardy-value-lg);
+  transition: transform 180ms ease, filter 180ms ease;
+}
+
+.button:hover:not(:disabled),
+.button:focus-visible:not(:disabled) {
+  filter: brightness(1.08);
+}
+
+.button:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.button:disabled {
+  cursor: default;
+  opacity: 0.5;
+}
+
+@media (max-width: 700px) {
+  .entryForm {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "input"
+      "button"
+      "hint";
+  }
+
+  .hint {
+    min-height: 0;
+    padding-top: 0.15rem;
+  }
+
+  .input,
+  .button {
+    min-height: 3.5rem;
+  }
+}
