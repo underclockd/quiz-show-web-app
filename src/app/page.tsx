@@ -5,26 +5,34 @@ import styles from "./page.module.css";
 
 export default async function Home() {
   const games = await db.game.findMany();
+  
   return (
-    <div className={styles.page}>
+    <div className={styles.pageWrapper}>
       <main className={styles.main}>
+        
         <h1>Games</h1>
-        <GameEntryField />
-        <h2>Recent Boards</h2>
-        <ul>
+        <p className={styles.subtitle}>Enter a game ID or select a recent board</p>
+        
+        <div className={styles.entryFieldWrapper}>
+          <GameEntryField />
+        </div>
+        
+        <div className={styles.jeopardyGrid}>
           {games.map((game) => {
-            const gameData = game.data;
+            const gameData: any = game.data; // Type as needed
             const firstCategory = gameData.single?.categories?.[0]?.name || "First Category";
+            
             return (
-              <li key={game.id}>
-                <Link href={`/game/${game.id}`}>
-                  Game #{game.id}
-                </Link>
-                <p>Category 1: {firstCategory}</p>
-              </li>
+              <Link href={`/game/${game.id}`} key={game.id} className={styles.cardLink}>
+                <div className={styles.card}>
+                  <h3>Game #{game.id}</h3>
+                  <p>Category 1: {firstCategory}</p>
+                </div>
+              </Link>
             );
           })}
-        </ul>
+        </div>
+        
       </main>
     </div>
   );
