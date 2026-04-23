@@ -1,14 +1,5 @@
 :root {
-  /* Jeopardy! color palette */
-  --jeopardy-blue: rgb(11, 20, 127);
-  --jeopardy-light: rgb(25, 45, 190); /* Added for gradient */
-  --jeopardy-dark: rgb(5, 10, 60);    /* Added for gradient */
-  --jeopardy-gold: rgb(250, 184, 91);
-  --jeopardy-white: #FFFFFF;
-  --jeopardy-black: #000000;
-
-  /* Semantic aliases */
-  /* Replaced solid black with the premium blue gradient */
+  /* Raw palette tokens are injected from app/theme.ts on <html>. */
   --background: linear-gradient(180deg, var(--jeopardy-light) 0%, var(--jeopardy-blue) 40%, var(--jeopardy-dark) 100%);
   --foreground: var(--jeopardy-white);
   --board-bg: var(--jeopardy-black);
