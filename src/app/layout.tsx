@@ -7,25 +7,6 @@ import "./globals.css";
 const appName = "Trivia Show";
 const appDescription = "Play any archived Jeopardy! game.";
 
-function getMetadataBase() {
-  const configuredUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
-
-  if (!configuredUrl) {
-    return new URL("http://localhost:3000");
-  }
-
-  if (
-    configuredUrl.startsWith("http://") ||
-    configuredUrl.startsWith("https://")
-  ) {
-    return new URL(configuredUrl);
-  }
-
-  return new URL(`https://${configuredUrl}`);
-}
-
-const metadataBase = getMetadataBase();
-
 // ITC Korinna Std — the classic Jeopardy! clue font, self-hosted.
 const korinna = localFont({
   variable: "--font-korinna",
@@ -68,7 +49,6 @@ const oswald = Oswald({
 });
 
 export const metadata: Metadata = {
-  metadataBase,
   applicationName: appName,
   title: {
     default: appName,
