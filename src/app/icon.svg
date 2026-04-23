@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">Trivia Show icon</title>
+  <desc id="desc">A white question mark on a rounded blue background.</desc>
+  <rect width="64" height="64" rx="14" fill="#0b147f" />
+  <text
+    x="32"
+    y="40"
+    fill="#ffffff"
+    font-family="Georgia, Times New Roman, serif"
+    font-size="64"
+    font-weight="700"
+    stroke="#fab85b"
+    stroke-width="3"
+    paint-order="stroke fill"
+    text-anchor="middle"
+    dominant-baseline="middle"
+  >
+    ?
+  </text>
+</svg>
