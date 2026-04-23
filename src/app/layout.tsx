@@ -10,22 +10,22 @@ const korinna = localFont({
   display: "swap",
   src: [
     {
-      path: "./fonts/itc-korinna-std/korinna-regular.otf",
+      path: "../../public/fonts/itc-korinna-std/korinna-regular.otf",
       weight: "400",
       style: "normal",
     },
     {
-      path: "./fonts/itc-korinna-std/korinna-std-italic.otf",
+      path: "../../public/fonts/itc-korinna-std/korinna-std-italic.otf",
       weight: "400",
       style: "italic",
     },
     {
-      path: "./fonts/itc-korinna-std/korinna-std-bold.otf",
+      path: "../../public/fonts/itc-korinna-std/korinna-std-bold.otf",
       weight: "700",
       style: "normal",
     },
     {
-      path: "./fonts/itc-korinna-std/korinna-std-heavy.otf",
+      path: "../../public/fonts/itc-korinna-std/korinna-std-heavy.otf",
       weight: "900",
       style: "normal",
     },
@@ -46,10 +46,10 @@ const oswald = Oswald({
 });
 
 export const metadata: Metadata = {
-  applicationName: "J!",
+  applicationName: "Trivia Show",
   title: {
-    default: "J!",
-    template: "%s | J!",
+    default: "Trivia Show",
+    template: "%s | Trivia Show",
   },
   description: "Play any archived Jeopardy! game.",
   authors: [

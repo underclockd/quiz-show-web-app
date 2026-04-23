@@ -1,7 +1,19 @@
 import GameBoard from "@/components/GameBoard/GameBoard";
 import db from "@/db";
 import scrape from "@/db/scrape";
+import type { Metadata, ResolvingMetadata } from 'next';
 import { notFound } from "next/navigation";
+
+export async function generateMetadata(
+    { params }: { params: Promise<{ id: string }> },
+    parent: ResolvingMetadata
+): Promise<Metadata> {
+    const number = (await params).id
+
+    return {
+        title: `Game #${number}`
+    }
+}
 
 export default async function Game({ params }: { params: Promise<{ id: string }> }) {
     const id = parseInt((await params).id);
