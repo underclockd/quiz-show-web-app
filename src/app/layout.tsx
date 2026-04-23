@@ -4,6 +4,28 @@ import { Geist, Oswald } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 
+const appName = "Trivia Show";
+const appDescription = "Play any archived Jeopardy! game.";
+
+function getMetadataBase() {
+  const configuredUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+
+  if (!configuredUrl) {
+    return new URL("http://localhost:3000");
+  }
+
+  if (
+    configuredUrl.startsWith("http://") ||
+    configuredUrl.startsWith("https://")
+  ) {
+    return new URL(configuredUrl);
+  }
+
+  return new URL(`https://${configuredUrl}`);
+}
+
+const metadataBase = getMetadataBase();
+
 // ITC Korinna Std — the classic Jeopardy! clue font, self-hosted.
 const korinna = localFont({
   variable: "--font-korinna",
@@ -46,19 +68,36 @@ const oswald = Oswald({
 });
 
 export const metadata: Metadata = {
-  applicationName: "Trivia Show",
+  metadataBase,
+  applicationName: appName,
   title: {
-    default: "Trivia Show",
-    template: "%s | Trivia Show",
+    default: appName,
+    template: `%s | ${appName}`,
   },
-  description: "Play any archived Jeopardy! game.",
+  description: appDescription,
   authors: [
     { name: "Aiden Brown", url: "https://aiden.rodeo" },
     { name: "Jon Wich", url: "https://jonwich.fyi" }
   ],
+  alternates: {
+    canonical: "/",
+  },
   robots: {
     index: true,
     follow: true,
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "/",
+    siteName: appName,
+    title: appName,
+    description: appDescription,
+  },
+  twitter: {
+    card: "summary",
+    title: appName,
+    description: appDescription,
   },
 };
 
