@@ -1,5 +1,4 @@
 .dialog {
-    /* Override browser default dialog sizing/positioning */
     position: fixed;
     inset: 0;
     width: 100%;
@@ -9,23 +8,17 @@
     margin: 0;
     border: none;
 
-    background-color: var(--tile-bg);
-    background-image: var(--tile-surface-image);
-    background-size: var(--tile-surface-size);
-    background-repeat: var(--tile-surface-repeat);
-    background-position: var(--tile-surface-position);
+    background: var(--tile-surface) var(--tile-bg);
     background-blend-mode: var(--tile-surface-blend-mode);
+    box-shadow: var(--tile-surface-shadow);
 
     overflow: hidden;
-
     padding: 4rem;
-    box-shadow: var(--tile-surface-shadow);
     transform-origin: top left;
     animation: dialogExpand 600ms linear;
     will-change: transform;
 
     cursor: pointer;
-    -webkit-user-select: none;
     user-select: none;
 }
 

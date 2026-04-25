@@ -132,11 +132,7 @@
 }
 
 .card {
-  background-color: var(--tile-bg);
-  background-image: var(--tile-surface-image);
-  background-size: var(--tile-surface-size);
-  background-repeat: var(--tile-surface-repeat);
-  background-position: var(--tile-surface-position);
+  background: var(--tile-surface) var(--tile-bg);
   background-blend-mode: var(--tile-surface-blend-mode);
   box-shadow: var(--tile-surface-shadow);
   min-height: 12rem;

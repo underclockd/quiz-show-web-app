@@ -1,38 +1,28 @@
 .header {
-    background-color: var(--tile-bg);
-    background-image: var(--tile-surface-image);
-    background-size: var(--tile-surface-size);
-    background-repeat: var(--tile-surface-repeat);
-    background-position: var(--tile-surface-position);
+    /* Tile background. background-clip avoids a Safari sliver where the bg
+       paints through the border-bottom area. */
+    background: var(--tile-surface) var(--tile-bg);
     background-blend-mode: var(--tile-surface-blend-mode);
+    background-clip: padding-box;
     box-shadow: var(--tile-surface-shadow);
+
     color: var(--category-fg);
     text-transform: uppercase;
     font-family: var(--font-display);
     font-weight: 700;
     letter-spacing: 0.5px;
     text-shadow: var(--text-shadow-jeopardy);
-
     text-align: center;
-    vertical-align: middle;
     text-wrap: balance;
+    overflow-wrap: break-word;
+
     padding: 0.35rem 0.45rem;
     overflow: hidden;
-
-    /* Doubles the gap below the header row. box-sizing: border-box keeps the
-       border inside the cell so it doesn't add to the row height. */
     box-sizing: border-box;
     border-bottom: var(--board-gap) solid var(--board-bg);
 
-    /* Size containment so cell content can't push the row taller. */
     contain: size;
-    /* Scale text to the smaller of (cell height, cell width). The board is
-       100dvh tall and 100vw wide, divided across rows and columns. The
-       column-axis multiplier is small to leave room for long category names. */
-    font-size: min(
-        100dvh / var(--board-row-count, 6) * 0.32,
-        100vw / var(--board-col-count, 6) * 0.13
-    );
+    font-size: min(100dvh / var(--board-row-count, 6) * 0.32,
+            100vw / var(--board-col-count, 6) * 0.13);
     line-height: 1.05;
-    overflow-wrap: break-word;
 }

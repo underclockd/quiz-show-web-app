@@ -27,11 +27,7 @@
   min-height: 3.75rem;
   border: 0;
   outline: 0;
-  background-color: var(--tile-bg);
-  background-image: var(--tile-surface-image);
-  background-size: var(--tile-surface-size);
-  background-repeat: var(--tile-surface-repeat);
-  background-position: var(--tile-surface-position);
+  background: var(--tile-surface) var(--tile-bg);
   background-blend-mode: var(--tile-surface-blend-mode);
   box-shadow: var(--tile-surface-shadow);
 }

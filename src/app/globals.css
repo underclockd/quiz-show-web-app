@@ -9,12 +9,12 @@
   --clue-value-fg: var(--jeopardy-gold);
   --clue-text-fg: var(--jeopardy-white);
   
-  --tile-surface-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.011 0.024' numOctaves='4' seed='7' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)' opacity='0.52'/%3E%3C/svg%3E");
-  --tile-surface-image: var(--tile-surface-noise);
-  --tile-surface-size: cover;
-  --tile-surface-repeat: no-repeat;
-  --tile-surface-position: center center;
-  --tile-surface-blend-mode: multiply;
+  --tile-surface-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.011 0.024' numOctaves='4' seed='7' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E");
+  /* Single shorthand for tile background. Pair with `background-color: var(--tile-bg)`
+     and `background-blend-mode: var(--tile-surface-blend-mode)` at the call site. */
+  --tile-surface: var(--tile-surface-noise) center center / cover no-repeat;
+  /* overlay lightens highlights and darkens shadows against the deep blue, making the noise actually visible. */
+  --tile-surface-blend-mode: overlay;
   --tile-surface-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.14),
     inset 0 -2px 0 rgba(0, 0, 0, 0.14);
