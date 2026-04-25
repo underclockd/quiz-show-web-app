@@ -21,8 +21,8 @@ export default function FinalRoundDialog({ category }: { category: Category }) {
     };
 
     return (
-        <dialog ref={dialogRef} className={styles.dialog} onClick={handleClick}>
-            <h2 className={styles.category}>{category.name}</h2>
+        <dialog ref={dialogRef} className={styles.dialog} onClick={handleClick} aria-labelledby="final-category-name">
+            <h2 id="final-category-name" className={styles.category}>{category.name}</h2>
             <p className={styles.clue}>
                 {showAnswer ? clue?.response : clue?.text}
             </p>

@@ -95,6 +95,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${oswald.variable} ${korinna.variable}`}
       >
+        <a href="#main-content" className="skip-to-content">Skip to content</a>
         {children}
       </body>
     </html>

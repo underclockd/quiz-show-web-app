@@ -12,9 +12,21 @@
     user-select: none;
 }
 
+/* Body rows are sized so that, after subtracting all border-spacing gaps and
+   the extra --board-gap absorbed by the header's border-bottom, every visible
+   tile is the same size. */
+.boardContainer tbody tr {
+    height: calc((100dvh - var(--board-gap) * (var(--board-row-count) + 2)) / var(--board-row-count));
+}
+
+/* The header row gets one extra --board-gap of height to compensate for its
+   border-bottom, so its visible tile matches the body tiles. */
+.boardContainer thead tr {
+    height: calc((100dvh - var(--board-gap) * (var(--board-row-count) + 2)) / var(--board-row-count) + var(--board-gap));
+}
+
 .boardContainer tbody td {
     padding: 0;
-    font-size: clamp(2rem, 4.5vw, 4.5rem);
 }
 
 .boardEmptyCell {

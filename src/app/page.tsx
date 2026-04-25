@@ -8,9 +8,9 @@ export default async function Home() {
 
   return (
     <div className={styles.pageWrapper}>
-      <main className={styles.main}>
+      <main className={styles.main} id="main-content">
         <section className={styles.heroPanel} aria-label="Game search">
-
+          <h1>Trivia Show</h1>
           <div className={styles.entryFieldWrapper}>
             <GameEntryField />
           </div>
@@ -29,11 +29,11 @@ export default async function Home() {
               return (
                 <li key={game.id}>
                   <Link href={`/game/${game.id}`} className={styles.cardLink}>
-                    <div className={styles.card}>
+                    <article className={styles.card}>
                       <span className={styles.cardEyebrow}>Game</span>
                       <h3>#{game.id}</h3>
                       <p>{firstCategory}</p>
-                    </div>
+                    </article>
                   </Link>
                 </li>
               );

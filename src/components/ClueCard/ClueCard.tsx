@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useState, type MouseEvent } from "react";
+import { useRef, useState } from "react";
 
 import ClueDialog, { type ClueDialogHandle } from "@/components/ClueDialog/ClueDialog";
 import type { Clue } from "@/db/types";
@@ -19,23 +19,17 @@ export default function ClueCard({ value, clue, onClueFinished }: { value: numbe
             {answered ? (
                 <td aria-hidden="true" style={{ visibility: "hidden" }}>${value}</td>
             ) : (
-                <td
-                    className={styles.clueCard}
-                    role="button"
-                    tabIndex={0}
-                    aria-label={`$${value}`}
-                    onClick={(e: MouseEvent<HTMLTableCellElement>) => {
-                        dialogRef.current?.open(e.currentTarget.getBoundingClientRect());
-                    }}
-                    onKeyDown={(e) => {
-                        if (e.key === "Enter" || e.key === " ") {
-                            e.preventDefault();
-                            (e.currentTarget as HTMLTableCellElement).click();
-                        }
-                    }}
-                >
-                    ${value}
-                    <ClueDialog ref={dialogRef} clue={clue} onAnswered={handleAnswered} />
+                <td>
+                    <button
+                        className={styles.clueCard}
+                        aria-label={`$${value}`}
+                        onClick={(e) => {
+                            dialogRef.current?.open(e.currentTarget.getBoundingClientRect());
+                        }}
+                    >
+                        ${value}
+                        <ClueDialog ref={dialogRef} clue={clue} onAnswered={handleAnswered} />
+                    </button>
                 </td>
             )}
         </>

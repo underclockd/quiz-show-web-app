@@ -41,56 +41,68 @@ export default function GameBoard({ gameData }: { gameData: Board }) {
         });
     };
 
+    const roundLabel = currentRound === "final" ? "Final Jeopardy!" : currentRound === "double" ? "Double Jeopardy!" : "Single Jeopardy"!;
+
     if (currentRound === 'final') {
-        return <FinalRoundDialog category={gameData.final.categories[0]} />;
+        return (
+            <>
+                <p className="sr-only" aria-live="polite" aria-atomic="true">{roundLabel}</p>
+                <FinalRoundDialog category={gameData.final.categories[0]} />
+            </>
+        );
     }
 
     const baseValue = currentRound === "double" ? 400 : 200;
     const categories = gameData[currentRound]?.categories ?? [];
     const clueRowCount = Math.max(0, ...categories.map((category) => category.clues.length));
-    const roundLabel = currentRound === "double" ? "Double Jeopardy" : "Single Jeopardy";
 
     return (
-        <table
-            className={styles.boardContainer}
-            aria-label={roundLabel}
-            style={{ "--board-row-count": clueRowCount + 1 } as CSSProperties}
-        >
-            <thead>
-                <tr>
-                    {categories.map((category, index) => (
-                        <CategoryHeader key={`header-${category.name || index}`} title={category.name || ""} />
-                    ))}
-                </tr>
-            </thead>
-            <tbody>
-                {Array.from({ length: clueRowCount }, (_, clueIndex) => (
-                    <tr key={clueIndex}>
-                        {categories.map((category, categoryIndex) => {
-                            const clue = category.clues[clueIndex];
+        <>
+            <p className="sr-only" aria-live="polite" aria-atomic="true">{roundLabel}</p>
+            <table
+                className={styles.boardContainer}
+                aria-label={roundLabel}
+                style={{
+                    "--board-row-count": clueRowCount + 1,
+                    "--board-col-count": categories.length,
+                } as CSSProperties}
+            >
+                <thead>
+                    <tr>
+                        {categories.map((category, index) => (
+                            <CategoryHeader key={`header-${category.name || index}`} title={category.name || ""} />
+                        ))}
+                    </tr>
+                </thead>
+                <tbody>
+                    {Array.from({ length: clueRowCount }, (_, clueIndex) => (
+                        <tr key={clueIndex}>
+                            {categories.map((category, categoryIndex) => {
+                                const clue = category.clues[clueIndex];
 
-                            if (!clue) {
+                                if (!clue) {
+                                    return (
+                                        <td
+                                            key={`empty-${category.name || categoryIndex}-${clueIndex}`}
+                                            className={styles.boardEmptyCell}
+                                            aria-hidden="true"
+                                        />
+                                    );
+                                }
+
                                 return (
-                                    <td
-                                        key={`empty-${category.name || categoryIndex}-${clueIndex}`}
-                                        className={styles.boardEmptyCell}
-                                        aria-hidden="true"
+                                    <ClueCard
+                                        key={`clue-${category.name || categoryIndex}-${clueIndex}`}
+                                        value={(clueIndex + 1) * baseValue}
+                                        clue={clue}
+                                        onClueFinished={handleClueComplete}
                                     />
                                 );
-                            }
-
-                            return (
-                                <ClueCard
-                                    key={`clue-${category.name || categoryIndex}-${clueIndex}`}
-                                    value={(clueIndex + 1) * baseValue}
-                                    clue={clue}
-                                    onClueFinished={handleClueComplete}
-                                />
-                            );
-                        })}
-                    </tr>
-                ))}
-            </tbody>
-        </table>
+                            })}
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </>
     );
 }

@@ -10,7 +10,12 @@ export async function generateMetadata(
     const number = (await params).id
 
     return {
-        title: `Game #${number}`
+        title: `Game #${number}`,
+        description: `Play Jeopardy! game #${number} from the J! Archive.`,
+        openGraph: {
+            title: `Game #${number}`,
+            description: `Play Jeopardy! game #${number} from the J! Archive.`,
+        },
     }
 }
 
@@ -33,6 +38,8 @@ export default async function Game({ params }: { params: Promise<{ id: string }>
     }
 
     return (
-        <GameBoard gameData={game.data} />
+        <main id="main-content">
+            <GameBoard gameData={game.data} />
+        </main>
     )
 }
