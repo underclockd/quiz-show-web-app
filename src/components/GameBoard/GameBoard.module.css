@@ -1,12 +1,10 @@
 .boardContainer {
     --board-gap: 10px;
 
-    display: grid;
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-    grid-template-rows: repeat(var(--board-row-count, 6), minmax(0, 1fr));
-    gap: var(--board-gap);
+    table-layout: fixed;
+    border-collapse: separate;
+    border-spacing: var(--board-gap);
     background-color: var(--board-bg);
-    padding: 10px;
 
     height: 100vh;
     width: 100vw;
@@ -14,43 +12,13 @@
     user-select: none;
 }
 
-.boardHeader {
-    background-color: var(--tile-bg);
-    background-image: var(--tile-surface-image);
-    background-size: var(--tile-surface-size);
-    background-repeat: var(--tile-surface-repeat);
-    background-position: var(--tile-surface-position);
-    background-blend-mode: var(--tile-surface-blend-mode);
-    box-shadow: var(--tile-surface-shadow);
-    color: var(--category-fg);
-    text-transform: uppercase;
-    font-family: var(--font-display);
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    text-align: center;
-    text-shadow: var(--text-shadow-jeopardy);
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.35rem 0.45rem;
-    margin-bottom: var(--board-gap);
-    overflow: hidden;
+.boardContainer thead tr,
+.boardContainer tbody tr {
+    height: 1%;
 }
 
-.boardHeaderText {
-    display: block;
-    max-width: 100%;
-    font-size: var(--board-header-font-size, 1.9rem);
-    line-height: 1;
-    text-wrap: balance;
-    overflow-wrap: normal;
-    word-break: normal;
-}
-
-.singleLineHeaderText {
-    white-space: nowrap;
-    text-wrap: nowrap;
+.boardContainer tbody td {
+    padding: 0;
 }
 
 .boardEmptyCell {

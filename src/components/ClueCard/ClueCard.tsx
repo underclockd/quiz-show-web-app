@@ -17,15 +17,15 @@ export default function ClueCard({ value, clue, onClueFinished }: { value: numbe
     return (
         <>
             {answered ? (
-                <div className={styles.emptySlot} aria-hidden="true" />
+                <td className={styles.emptySlot} aria-hidden="true" />
             ) : (
-                <div className={styles.clueCard} onClick={(e: MouseEvent<HTMLDivElement>) => {
+                <td className={styles.clueCard} onClick={(e: MouseEvent<HTMLTableCellElement>) => {
                     dialogRef.current?.open(e.currentTarget.getBoundingClientRect());
                 }}>
                     ${value}
-                </div>
+                    <ClueDialog ref={dialogRef} clue={clue} onAnswered={handleAnswered} />
+                </td>
             )}
-            <ClueDialog ref={dialogRef} clue={clue} onAnswered={handleAnswered} />
         </>
     );
 }

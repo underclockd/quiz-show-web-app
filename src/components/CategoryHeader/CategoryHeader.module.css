@@ -1,0 +1,22 @@
+.header {
+    background-color: var(--tile-bg);
+    background-image: var(--tile-surface-image);
+    background-size: var(--tile-surface-size);
+    background-repeat: var(--tile-surface-repeat);
+    background-position: var(--tile-surface-position);
+    background-blend-mode: var(--tile-surface-blend-mode);
+    box-shadow: var(--tile-surface-shadow);
+    color: var(--category-fg);
+    text-transform: uppercase;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(1rem, 2.2vw, 2.2rem);
+    letter-spacing: 0.5px;
+    text-align: center;
+    text-shadow: var(--text-shadow-jeopardy);
+    text-wrap: balance;
+    overflow: hidden;
+
+    vertical-align: middle;
+    padding: 0.35rem 0.45rem;
+}

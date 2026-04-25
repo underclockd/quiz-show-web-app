@@ -7,9 +7,8 @@
     background-blend-mode: var(--tile-surface-blend-mode);
     box-shadow: var(--tile-surface-shadow);
     color: var(--clue-value-fg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    text-align: center;
+    vertical-align: middle;
     /* Dollar values on the show are Swiss 911 Compressed (very condensed sans). */
     font-family: var(--font-display);
     font-weight: 500;
@@ -19,7 +18,7 @@
     text-shadow: var(--text-shadow-jeopardy-value-lg);
 }
 
-/* Placeholder that reserves the grid cell after a clue is fully revealed.
+/* Placeholder that reserves the table cell after a clue is fully revealed.
    Transparent so the board background shows through, matching the show. */
 .emptySlot {
     background-color: transparent;
