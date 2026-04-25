@@ -13,7 +13,8 @@ export default function FinalRoundDialog({ category }: { category: Category }) {
         dialogRef.current?.showModal();
     }, []);
 
-    const handleClick = () => {
+    const handleClick = (e: React.MouseEvent) => {
+        e.stopPropagation();
         if (!showAnswer) {
             setShowAnswer(true);
         }

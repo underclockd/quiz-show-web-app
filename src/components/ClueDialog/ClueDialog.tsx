@@ -24,7 +24,8 @@ const ClueDialog = forwardRef<ClueDialogHandle, { clue: Clue; onAnswered: () => 
             },
         }));
 
-        const handleClick = () => {
+        const handleClick = (e: React.MouseEvent) => {
+            e.stopPropagation();
             if (!showAnswer) {
                 setShowAnswer(true);
             } else {
