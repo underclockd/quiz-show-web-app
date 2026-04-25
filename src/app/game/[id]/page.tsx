@@ -1,12 +1,11 @@
 import GameBoard from "@/components/GameBoard/GameBoard";
 import db from "@/db";
 import scrape from "@/db/scrape";
-import type { Metadata, ResolvingMetadata } from 'next';
+import type { Metadata } from 'next';
 import { notFound } from "next/navigation";
 
 export async function generateMetadata(
-    { params }: { params: Promise<{ id: string }> },
-    parent: ResolvingMetadata
+    { params }: { params: Promise<{ id: string }> }
 ): Promise<Metadata> {
     const number = (await params).id
 
