@@ -9,17 +9,11 @@
     color: var(--clue-value-fg);
     text-align: center;
     vertical-align: middle;
-    /* Dollar values on the show are Swiss 911 Compressed (very condensed sans). */
     font-family: var(--font-display);
     font-weight: 500;
-    font-size: clamp(2rem, 4.5vw, 4.5rem);
     letter-spacing: 0.01em;
     cursor: pointer;
     text-shadow: var(--text-shadow-jeopardy-value-lg);
 }
 
-/* Placeholder that reserves the table cell after a clue is fully revealed.
-   Transparent so the board background shows through, matching the show. */
-.emptySlot {
-    background-color: transparent;
-}
+

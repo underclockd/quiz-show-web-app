@@ -6,19 +6,15 @@
     border-spacing: var(--board-gap);
     background-color: var(--board-bg);
 
-    height: 100vh;
-    width: 100vw;
+    height: 100dvh;
+    width: 100%;
     -webkit-user-select: none;
     user-select: none;
 }
 
-.boardContainer thead tr,
-.boardContainer tbody tr {
-    height: calc((100vh - (var(--board-row-count, 6) + 1) * var(--board-gap)) / var(--board-row-count, 6));
-}
-
 .boardContainer tbody td {
     padding: 0;
+    font-size: clamp(2rem, 4.5vw, 4.5rem);
 }
 
 .boardEmptyCell {

@@ -53,9 +53,9 @@ export default function GameBoard({ gameData }: { gameData: Board }) {
     return (
         <table
             className={styles.boardContainer}
+            aria-label={roundLabel}
             style={{ "--board-row-count": clueRowCount + 1 } as CSSProperties}
         >
-            <caption className="sr-only">{roundLabel}</caption>
             <thead>
                 <tr>
                     {categories.map((category, index) => (

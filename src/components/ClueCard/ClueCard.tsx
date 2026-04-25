@@ -17,7 +17,7 @@ export default function ClueCard({ value, clue, onClueFinished }: { value: numbe
     return (
         <>
             {answered ? (
-                <td className={styles.emptySlot} aria-hidden="true" />
+                <td aria-hidden="true" style={{ visibility: "hidden" }}>${value}</td>
             ) : (
                 <td
                     className={styles.clueCard}
