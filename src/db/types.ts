@@ -1,6 +1,7 @@
 // This specifies the structure of the JSON we store in the database.
 
 declare global {
+    // eslint-disable-next-line @typescript-eslint/no-namespace
     namespace PrismaJson {
         type GameData = Board;
     }
