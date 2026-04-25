@@ -29,7 +29,7 @@
   /* Scale shadows with the text size so large board lettering keeps
         the heavy Jeopardy-style edge treatment. */
   --text-shadow-jeopardy: 0.055em 0.055em 0 rgba(0, 0, 0, 0.8);
-  --text-shadow-jeopardy-value-lg:
+  --text-shadow-jeopardy-lg:
     0.02em 0 0 rgba(0, 0, 0, 0.96),
     -0.02em 0 0 rgba(0, 0, 0, 0.96),
     0 0.02em 0 rgba(0, 0, 0, 0.96),
@@ -39,23 +39,11 @@
     0.02em -0.02em 0 rgba(0, 0, 0, 0.96),
     -0.02em -0.02em 0 rgba(0, 0, 0, 0.96),
     0.075em 0.075em 0 rgba(0, 0, 0, 0.78);
-  --text-shadow-jeopardy-clue-lg:
-    0.017em 0 0 rgba(0, 0, 0, 0.94),
-    -0.017em 0 0 rgba(0, 0, 0, 0.94),
-    0 0.017em 0 rgba(0, 0, 0, 0.94),
-    0 -0.017em 0 rgba(0, 0, 0, 0.94),
-    0.017em 0.017em 0 rgba(0, 0, 0, 0.94),
-    -0.017em 0.017em 0 rgba(0, 0, 0, 0.94),
-    0.017em -0.017em 0 rgba(0, 0, 0, 0.94),
-    -0.017em -0.017em 0 rgba(0, 0, 0, 0.94),
-    0.06em 0.06em 0 rgba(0, 0, 0, 0.76);
 }
 
 /* Consolidated html/body tags */
 html,
 body {
-  margin: 0;
-  padding: 0;
   width: 100%;
   background: var(--background);
   background-attachment: fixed;

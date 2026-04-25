@@ -19,7 +19,7 @@
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--clue-value-fg);
-  text-shadow: var(--text-shadow-jeopardy-value-lg);
+  text-shadow: var(--text-shadow-jeopardy-lg);
 }
 
 .input,
@@ -42,7 +42,7 @@
   line-height: 1;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  text-shadow: var(--text-shadow-jeopardy-clue-lg);
+  text-shadow: var(--text-shadow-jeopardy-lg);
   appearance: textfield;
 }
 
@@ -83,7 +83,7 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--clue-value-fg);
-  text-shadow: var(--text-shadow-jeopardy-value-lg);
+  text-shadow: var(--text-shadow-jeopardy-lg);
   transition: transform 180ms ease, filter 180ms ease;
 }
 

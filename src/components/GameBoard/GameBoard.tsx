@@ -1,5 +1,5 @@
 "use client";
-import { type CSSProperties, useState } from "react";
+import { type CSSProperties, useEffect, useState } from "react";
 
 import ClueCard from "@/components/ClueCard/ClueCard";
 import { Board, Category } from "@/db/types";
@@ -12,6 +12,14 @@ import styles from "./GameBoard.module.css";
 export default function GameBoard({ gameData }: { gameData: Board }) {
     // Current round of the game
     const [currentRound, setCurrentRound] = useState<'single' | 'double' | 'final'>('single');
+
+    // Pre-decode the clue font (Korinna) before any dialog opens. Without this,
+    // the board never paints Korinna so the browser delays glyph rasterization
+    // until the first dialog mounts, briefly showing the serif fallback.
+    // CSS Font Loading API: https://developer.mozilla.org/docs/Web/API/CSS_Font_Loading_API
+    useEffect(() => {
+        document.fonts.load('700 1rem Korinna').catch(() => { });
+    }, []);
 
     // Number of clues fully revealed (answer shown)
     const [, setRevealedCount] = useState(0);

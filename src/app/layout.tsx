@@ -8,6 +8,8 @@ const appName = "Trivia Show";
 const appDescription = "Play any archived Jeopardy! game.";
 
 // ITC Korinna Std — the classic Jeopardy! clue font, self-hosted.
+// Only the regular and bold weights are referenced anywhere in the app;
+// italic and heavy were preloading without ever being painted (Next warned).
 const korinna = localFont({
   variable: "--font-korinna",
   display: "swap",
@@ -18,18 +20,8 @@ const korinna = localFont({
       style: "normal",
     },
     {
-      path: "../../public/fonts/itc-korinna-std/korinna-std-italic.otf",
-      weight: "400",
-      style: "italic",
-    },
-    {
       path: "../../public/fonts/itc-korinna-std/korinna-std-bold.otf",
       weight: "700",
-      style: "normal",
-    },
-    {
-      path: "../../public/fonts/itc-korinna-std/korinna-std-heavy.otf",
-      weight: "900",
       style: "normal",
     },
   ],
