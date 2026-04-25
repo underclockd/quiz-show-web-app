@@ -25,7 +25,7 @@ export default function GameEntryField() {
             router.push(`/game/${requestedID}`);
     };
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault();
         loadGame();
     };
