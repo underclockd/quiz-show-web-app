@@ -48,12 +48,14 @@ export default function GameBoard({ gameData }: { gameData: Board }) {
     const baseValue = currentRound === "double" ? 400 : 200;
     const categories = gameData[currentRound]?.categories ?? [];
     const clueRowCount = Math.max(0, ...categories.map((category) => category.clues.length));
+    const roundLabel = currentRound === "double" ? "Double Jeopardy" : "Single Jeopardy";
 
     return (
         <table
             className={styles.boardContainer}
             style={{ "--board-row-count": clueRowCount + 1 } as CSSProperties}
         >
+            <caption className="sr-only">{roundLabel}</caption>
             <thead>
                 <tr>
                     {categories.map((category, index) => (

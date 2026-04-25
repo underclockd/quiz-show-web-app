@@ -4,6 +4,7 @@
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   grid-template-areas:
+    "label label"
     "input button"
     "hint hint";
   gap: 8px;
@@ -11,7 +12,7 @@
 }
 
 .label {
-  grid-column: 1 / -1;
+  grid-area: label;
   font-family: var(--font-display);
   font-size: clamp(1.15rem, 2vw, 1.5rem);
   line-height: 1;

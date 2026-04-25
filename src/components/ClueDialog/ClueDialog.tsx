@@ -36,9 +36,9 @@ const ClueDialog = forwardRef<ClueDialogHandle, { clue: Clue; onAnswered: () => 
 
         return (
             <dialog ref={dialogRef} className={styles.dialog} onClick={handleClick}>
-                <div className={styles.content}>
+                <p className={styles.content}>
                     {showAnswer ? clue.response : clue.text}
-                </div>
+                </p>
             </dialog>
         );
     }

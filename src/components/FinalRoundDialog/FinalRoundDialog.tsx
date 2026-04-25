@@ -22,10 +22,10 @@ export default function FinalRoundDialog({ category }: { category: Category }) {
 
     return (
         <dialog ref={dialogRef} className={styles.dialog} onClick={handleClick}>
-            <div className={styles.category}>{category.name}</div>
-            <div className={styles.clue}>
+            <h2 className={styles.category}>{category.name}</h2>
+            <p className={styles.clue}>
                 {showAnswer ? clue?.response : clue?.text}
-            </div>
+            </p>
         </dialog>
     );
 }

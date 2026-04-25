@@ -19,9 +19,21 @@ export default function ClueCard({ value, clue, onClueFinished }: { value: numbe
             {answered ? (
                 <td className={styles.emptySlot} aria-hidden="true" />
             ) : (
-                <td className={styles.clueCard} onClick={(e: MouseEvent<HTMLTableCellElement>) => {
-                    dialogRef.current?.open(e.currentTarget.getBoundingClientRect());
-                }}>
+                <td
+                    className={styles.clueCard}
+                    role="button"
+                    tabIndex={0}
+                    aria-label={`$${value}`}
+                    onClick={(e: MouseEvent<HTMLTableCellElement>) => {
+                        dialogRef.current?.open(e.currentTarget.getBoundingClientRect());
+                    }}
+                    onKeyDown={(e) => {
+                        if (e.key === "Enter" || e.key === " ") {
+                            e.preventDefault();
+                            (e.currentTarget as HTMLTableCellElement).click();
+                        }
+                    }}
+                >
                     ${value}
                     <ClueDialog ref={dialogRef} clue={clue} onAnswered={handleAnswered} />
                 </td>
