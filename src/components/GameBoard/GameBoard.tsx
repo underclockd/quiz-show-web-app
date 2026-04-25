@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { type CSSProperties, useState } from "react";
 
 import ClueCard from "@/components/ClueCard/ClueCard";
 import { Board, Category } from "@/db/types";
@@ -50,7 +50,10 @@ export default function GameBoard({ gameData }: { gameData: Board }) {
     const clueRowCount = Math.max(0, ...categories.map((category) => category.clues.length));
 
     return (
-        <table className={styles.boardContainer}>
+        <table
+            className={styles.boardContainer}
+            style={{ "--board-row-count": clueRowCount + 1 } as CSSProperties}
+        >
             <thead>
                 <tr>
                     {categories.map((category, index) => (

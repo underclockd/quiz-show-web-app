@@ -14,7 +14,7 @@
 
 .boardContainer thead tr,
 .boardContainer tbody tr {
-    height: 1%;
+    height: calc((100vh - (var(--board-row-count, 6) + 1) * var(--board-gap)) / var(--board-row-count, 6));
 }
 
 .boardContainer tbody td {
