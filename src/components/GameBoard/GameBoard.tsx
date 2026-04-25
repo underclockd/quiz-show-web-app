@@ -4,35 +4,10 @@ import { useState } from "react";
 import ClueCard from "@/components/ClueCard/ClueCard";
 import { Board, Category } from "@/db/types";
 import CategoryHeader from "../CategoryHeader/CategoryHeader";
+import FinalRoundDialog from "../FinalRoundDialog/FinalRoundDialog";
 import styles from "./GameBoard.module.css";
 
 
-
-function FinalRoundDisplay({ categoryData }: { categoryData: Category }) {
-    // 0: Showing Clue
-    // 1: Showing Answer
-    const [showAnswer, setShowAnswer] = useState(false);
-
-    const clue = categoryData?.clues?.[0];
-
-    const handleClick = () => {
-        if (!showAnswer) {
-            setShowAnswer(true);
-        }
-    };
-
-    return (
-        <div className={styles.finalRoundContainer} onClick={handleClick}>
-            <div className={styles.finalCategory}>
-                {categoryData?.name || "Final Category"}
-            </div>
-
-            <div className={styles.finalClue}>
-                {showAnswer ? clue?.response : clue?.text}
-            </div>
-        </div>
-    );
-}
 
 export default function GameBoard({ gameData }: { gameData: Board }) {
     // Current round of the game
@@ -67,8 +42,7 @@ export default function GameBoard({ gameData }: { gameData: Board }) {
     };
 
     if (currentRound === 'final') {
-        const finalCategoryData = gameData.final?.categories?.[0];
-        return <FinalRoundDisplay categoryData={finalCategoryData} />;
+        return <FinalRoundDialog category={gameData.final.categories[0]} />;
     }
 
     const baseValue = currentRound === "double" ? 400 : 200;
