@@ -19,7 +19,6 @@
     text-align: center;
     font-family: var(--font-display);
     font-weight: 500;
-    letter-spacing: 0.01em;
     text-shadow: var(--text-shadow-jeopardy-lg);
 
     font-size: min(100dvh / var(--board-row-count, 6) * 0.55,

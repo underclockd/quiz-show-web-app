@@ -20,6 +20,11 @@
     height: calc(var(--row-h) + var(--board-gap));
 }
 
+.boardContainer thead th {
+    height: calc(var(--row-h) + var(--board-gap));
+    max-height: calc(var(--row-h) + var(--board-gap));
+}
+
 .boardContainer tbody td {
     padding: 0;
 }

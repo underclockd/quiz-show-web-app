@@ -15,17 +15,18 @@
     overflow: hidden;
     padding: 4rem;
     transform-origin: top left;
-    animation: dialogExpand 600ms linear;
-    will-change: transform;
 
     cursor: pointer;
     user-select: none;
+    display: none;
 }
 
 .dialog[open] {
     display: flex;
     align-items: center;
     justify-content: center;
+    animation: dialogExpand 600ms linear;
+    will-change: transform;
 }
 
 .dialog::backdrop {
