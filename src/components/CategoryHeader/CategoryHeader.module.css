@@ -1,0 +1,24 @@
+.header {
+    /* Tile background. */
+    background: var(--tile-surface) var(--tile-bg);
+    background-blend-mode: var(--tile-surface-blend-mode);
+    background-clip: padding-box;
+    box-shadow: var(--tile-surface-shadow);
+
+    color: var(--category-fg);
+    text-transform: uppercase;
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-shadow: var(--text-shadow-jeopardy);
+    text-align: center;
+    text-wrap: balance;
+    overflow-wrap: break-word;
+
+    padding: 0.5vmin 0.65vmin;
+    overflow: hidden;
+    box-sizing: border-box;
+
+    font-size: calc(min(100dvh / var(--board-row-count, 6) * 0.32, 100vw / var(--board-col-count, 6) * 0.132) * var(--category-scale, 1));
+    line-height: 1.05;
+}

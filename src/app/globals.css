@@ -9,12 +9,12 @@
   --clue-value-fg: var(--jeopardy-gold);
   --clue-text-fg: var(--jeopardy-white);
   
-  --tile-surface-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.011 0.024' numOctaves='4' seed='7' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)' opacity='0.52'/%3E%3C/svg%3E");
-  --tile-surface-image: var(--tile-surface-noise);
-  --tile-surface-size: cover;
-  --tile-surface-repeat: no-repeat;
-  --tile-surface-position: center center;
-  --tile-surface-blend-mode: multiply;
+  --tile-surface-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.011 0.024' numOctaves='4' seed='7' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E");
+  /* Single shorthand for tile background. Pair with `background-color: var(--tile-bg)`
+     and `background-blend-mode: var(--tile-surface-blend-mode)` at the call site. */
+  --tile-surface: var(--tile-surface-noise) center center / cover no-repeat;
+  /* overlay lightens highlights and darkens shadows against the deep blue, making the noise actually visible. */
+  --tile-surface-blend-mode: overlay;
   --tile-surface-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.14),
     inset 0 -2px 0 rgba(0, 0, 0, 0.14);
@@ -29,7 +29,7 @@
   /* Scale shadows with the text size so large board lettering keeps
         the heavy Jeopardy-style edge treatment. */
   --text-shadow-jeopardy: 0.055em 0.055em 0 rgba(0, 0, 0, 0.8);
-  --text-shadow-jeopardy-value-lg:
+  --text-shadow-jeopardy-lg:
     0.02em 0 0 rgba(0, 0, 0, 0.96),
     -0.02em 0 0 rgba(0, 0, 0, 0.96),
     0 0.02em 0 rgba(0, 0, 0, 0.96),
@@ -39,30 +39,18 @@
     0.02em -0.02em 0 rgba(0, 0, 0, 0.96),
     -0.02em -0.02em 0 rgba(0, 0, 0, 0.96),
     0.075em 0.075em 0 rgba(0, 0, 0, 0.78);
-  --text-shadow-jeopardy-clue-lg:
-    0.017em 0 0 rgba(0, 0, 0, 0.94),
-    -0.017em 0 0 rgba(0, 0, 0, 0.94),
-    0 0.017em 0 rgba(0, 0, 0, 0.94),
-    0 -0.017em 0 rgba(0, 0, 0, 0.94),
-    0.017em 0.017em 0 rgba(0, 0, 0, 0.94),
-    -0.017em 0.017em 0 rgba(0, 0, 0, 0.94),
-    0.017em -0.017em 0 rgba(0, 0, 0, 0.94),
-    -0.017em -0.017em 0 rgba(0, 0, 0, 0.94),
-    0.06em 0.06em 0 rgba(0, 0, 0, 0.76);
 }
 
 /* Consolidated html/body tags */
 html,
 body {
-  margin: 0;
-  padding: 0;
   width: 100%;
   background: var(--background);
   background-attachment: fixed;
   color: var(--foreground);
   font-family: var(--font-body);
   line-height: 1.6;
-  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -80,4 +68,35 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+/* Visually hidden but available to assistive technology. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Skip-to-content link — off-screen until focused. */
+.skip-to-content {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  padding: 0.5rem 1.25rem;
+  background: var(--board-bg);
+  color: var(--foreground);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  z-index: 9999;
+  transition: top 0.1s;
+}
+
+.skip-to-content:focus {
+  top: 0;
 }

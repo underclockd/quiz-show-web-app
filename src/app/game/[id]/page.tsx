@@ -1,17 +1,38 @@
+import { appName } from "@/app/site";
 import GameBoard from "@/components/GameBoard/GameBoard";
 import db from "@/db";
 import scrape from "@/db/scrape";
-import type { Metadata } from 'next';
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 export async function generateMetadata(
     { params }: { params: Promise<{ id: string }> }
 ): Promise<Metadata> {
-    const number = (await params).id
+    const number = (await params).id;
+    const title = `Game #${number}`;
+    const description = `Play trivia game #${number}`;
+    const path = `/game/${number}`;
 
     return {
-        title: `Game #${number}`
-    }
+        title,
+        description,
+        alternates: {
+            canonical: path,
+        },
+        openGraph: {
+            type: "website",
+            locale: "en_US",
+            url: path,
+            siteName: appName,
+            title,
+            description,
+        },
+        twitter: {
+            card: "summary",
+            title,
+            description,
+        },
+    };
 }
 
 export default async function Game({ params }: { params: Promise<{ id: string }> }) {
@@ -33,6 +54,8 @@ export default async function Game({ params }: { params: Promise<{ id: string }>
     }
 
     return (
-        <GameBoard gameData={game.data} />
-    )
+        <main id="main-content">
+            <GameBoard gameData={game.data} />
+        </main>
+    );
 }

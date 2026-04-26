@@ -1,13 +1,13 @@
+import { appDescription, appName, getMetadataBase } from "@/app/site";
 import { themeColors, themeVariables } from "@/app/theme";
 import type { Metadata, Viewport } from "next";
 import { Geist, Oswald } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 
-const appName = "Trivia Show";
-const appDescription = "Play any archived Jeopardy! game.";
-
 // ITC Korinna Std — the classic Jeopardy! clue font, self-hosted.
+// Only the regular and bold weights are referenced anywhere in the app;
+// italic and heavy were preloading without ever being painted (Next warned).
 const korinna = localFont({
   variable: "--font-korinna",
   display: "swap",
@@ -18,18 +18,8 @@ const korinna = localFont({
       style: "normal",
     },
     {
-      path: "../../public/fonts/itc-korinna-std/korinna-std-italic.otf",
-      weight: "400",
-      style: "italic",
-    },
-    {
       path: "../../public/fonts/itc-korinna-std/korinna-std-bold.otf",
       weight: "700",
-      style: "normal",
-    },
-    {
-      path: "../../public/fonts/itc-korinna-std/korinna-std-heavy.otf",
-      weight: "900",
       style: "normal",
     },
   ],
@@ -49,6 +39,7 @@ const oswald = Oswald({
 });
 
 export const metadata: Metadata = {
+  metadataBase: getMetadataBase(),
   applicationName: appName,
   title: {
     default: appName,
@@ -57,8 +48,14 @@ export const metadata: Metadata = {
   description: appDescription,
   authors: [
     { name: "Aiden Brown", url: "https://aiden.rodeo" },
-    { name: "Jon Wich", url: "https://jonwich.fyi" }
+    { name: "Jon Wich", url: "https://jonwich.fyi" },
   ],
+  creator: "Aiden Brown and Jon Wich",
+  publisher: appName,
+  category: "games",
+  formatDetection: {
+    telephone: false,
+  },
   alternates: {
     canonical: "/",
   },
@@ -79,6 +76,10 @@ export const metadata: Metadata = {
     title: appName,
     description: appDescription,
   },
+  appleWebApp: {
+    title: appName,
+    statusBarStyle: "black-translucent",
+  },
 };
 
 export const viewport: Viewport = {
@@ -95,6 +96,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${oswald.variable} ${korinna.variable}`}
       >
+        <a href="#main-content" className="skip-to-content">Skip to content</a>
         {children}
       </body>
     </html>

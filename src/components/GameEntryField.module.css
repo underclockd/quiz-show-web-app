@@ -4,6 +4,7 @@
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   grid-template-areas:
+    "label label"
     "input button"
     "hint hint";
   gap: 8px;
@@ -11,14 +12,14 @@
 }
 
 .label {
-  grid-column: 1 / -1;
+  grid-area: label;
   font-family: var(--font-display);
   font-size: clamp(1.15rem, 2vw, 1.5rem);
   line-height: 1;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--clue-value-fg);
-  text-shadow: var(--text-shadow-jeopardy-value-lg);
+  text-shadow: var(--text-shadow-jeopardy-lg);
 }
 
 .input,
@@ -26,11 +27,7 @@
   min-height: 3.75rem;
   border: 0;
   outline: 0;
-  background-color: var(--tile-bg);
-  background-image: var(--tile-surface-image);
-  background-size: var(--tile-surface-size);
-  background-repeat: var(--tile-surface-repeat);
-  background-position: var(--tile-surface-position);
+  background: var(--tile-surface) var(--tile-bg);
   background-blend-mode: var(--tile-surface-blend-mode);
   box-shadow: var(--tile-surface-shadow);
 }
@@ -45,7 +42,7 @@
   line-height: 1;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  text-shadow: var(--text-shadow-jeopardy-clue-lg);
+  text-shadow: var(--text-shadow-jeopardy-lg);
   appearance: textfield;
 }
 
@@ -86,7 +83,7 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--clue-value-fg);
-  text-shadow: var(--text-shadow-jeopardy-value-lg);
+  text-shadow: var(--text-shadow-jeopardy-lg);
   transition: transform 180ms ease, filter 180ms ease;
 }
 

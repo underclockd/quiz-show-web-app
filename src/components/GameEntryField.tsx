@@ -25,13 +25,14 @@ export default function GameEntryField() {
             router.push(`/game/${requestedID}`);
     };
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault();
         loadGame();
     };
 
     return (
         <form className={styles.entryForm} onSubmit={handleSubmit}>
+            <label className={styles.label} htmlFor="game-id-input">Game Number</label>
             <input
                 className={styles.input}
                 id="game-id-input"
@@ -42,11 +43,12 @@ export default function GameEntryField() {
                 placeholder="4165"
                 value={requestedID}
                 onChange={handleSearch}
+                aria-describedby="game-id-hint"
             />
             <button className={styles.button} type="submit" disabled={requestedID === ""}>
                 Play
             </button>
-            <div className={styles.hint}>Load any board from the J! Archive</div>
+            <p id="game-id-hint" className={styles.hint}>Load any board from the J! Archive</p>
         </form>
     );
 }
