@@ -1,14 +1,16 @@
 "use client";
-import { forwardRef, useImperativeHandle, useRef, useState } from "react";
+import { forwardRef, useId, useImperativeHandle, useRef, useState, type KeyboardEvent, type MouseEvent } from "react";
 
 import type { Clue } from "@/db/types";
 import styles from "./ClueDialog.module.css";
 
 export type ClueDialogHandle = { open: (origin: DOMRect) => void };
 
-const ClueDialog = forwardRef<ClueDialogHandle, { clue: Clue; onAnswered: () => void }>(
-    function ClueDialog({ clue, onAnswered }, ref) {
+const ClueDialog = forwardRef<ClueDialogHandle, { clue: Clue; label: string; onAnswered: () => void }>(
+    function ClueDialog({ clue, label, onAnswered }, ref) {
         const dialogRef = useRef<HTMLDialogElement>(null);
+        const titleId = useId();
+        const contentId = useId();
         const [showAnswer, setShowAnswer] = useState(false);
 
         useImperativeHandle(ref, () => ({
@@ -24,19 +26,44 @@ const ClueDialog = forwardRef<ClueDialogHandle, { clue: Clue; onAnswered: () => 
             },
         }));
 
-        const handleClick = (e: React.MouseEvent) => {
-            e.stopPropagation();
-            if (!showAnswer) {
-                setShowAnswer(true);
-            } else {
+        const advanceDialog = () => {
+            if (showAnswer) {
                 dialogRef.current?.close();
-                onAnswered();
+                return;
+            }
+
+            setShowAnswer(true);
+        };
+
+        const handleClick = (e: MouseEvent<HTMLDialogElement>) => {
+            e.stopPropagation();
+            advanceDialog();
+        };
+
+        const handleKeyDown = (e: KeyboardEvent<HTMLDialogElement>) => {
+            if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                advanceDialog();
             }
         };
 
+        const handleClose = () => {
+            if (showAnswer) onAnswered();
+            setShowAnswer(false);
+        };
+
         return (
-            <dialog ref={dialogRef} className={styles.dialog} onClick={handleClick} aria-label="Clue">
-                <p className={styles.content}>
+            <dialog
+                ref={dialogRef}
+                className={styles.dialog}
+                onClick={handleClick}
+                onKeyDown={handleKeyDown}
+                onClose={handleClose}
+                aria-labelledby={titleId}
+                aria-describedby={contentId}
+            >
+                <h2 id={titleId} className="sr-only">{label}</h2>
+                <p id={contentId} className={styles.content}>
                     {showAnswer ? clue.response : clue.text}
                 </p>
             </dialog>

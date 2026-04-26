@@ -5,9 +5,10 @@ import ClueDialog, { type ClueDialogHandle } from "@/components/ClueDialog/ClueD
 import type { Clue } from "@/db/types";
 import styles from "./ClueCard.module.css";
 
-export default function ClueCard({ value, clue, onClueFinished }: { value: number, clue: Clue, onClueFinished: () => void }) {
+export default function ClueCard({ value, clue, categoryName, roundLabel, onClueFinished }: { value: number, clue: Clue, categoryName: string, roundLabel: string, onClueFinished: () => void }) {
     const [answered, setAnswered] = useState(false);
     const dialogRef = useRef<ClueDialogHandle>(null);
+    const clueLabel = `${roundLabel}, ${categoryName}, $${value} clue`;
 
     const handleAnswered = () => {
         setAnswered(true);
@@ -22,14 +23,14 @@ export default function ClueCard({ value, clue, onClueFinished }: { value: numbe
                 <td>
                     <button
                         className={styles.clueCard}
-                        aria-label={`$${value}`}
+                        aria-label={clueLabel}
                         onClick={(e) => {
                             dialogRef.current?.open(e.currentTarget.getBoundingClientRect());
                         }}
                     >
                         ${value}
-                        <ClueDialog ref={dialogRef} clue={clue} onAnswered={handleAnswered} />
                     </button>
+                    <ClueDialog ref={dialogRef} clue={clue} label={clueLabel} onAnswered={handleAnswered} />
                 </td>
             )}
         </>

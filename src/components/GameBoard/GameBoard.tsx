@@ -49,12 +49,12 @@ export default function GameBoard({ gameData }: { gameData: Board }) {
         });
     };
 
-    const roundLabel = currentRound === "final" ? "Final Jeopardy!" : currentRound === "double" ? "Double Jeopardy!" : "Single Jeopardy"!;
+    const roundLabel = currentRound === "final" ? "Final Jeopardy!" : currentRound === "double" ? "Double Jeopardy!" : "Single Jeopardy";
 
     if (currentRound === 'final') {
         return (
             <>
-                <p className="sr-only" aria-live="polite" aria-atomic="true">{roundLabel}</p>
+                <p className="sr-only" role="status">{roundLabel}</p>
                 <FinalRoundDialog category={gameData.final.categories[0]} />
             </>
         );
@@ -66,15 +66,15 @@ export default function GameBoard({ gameData }: { gameData: Board }) {
 
     return (
         <>
-            <p className="sr-only" aria-live="polite" aria-atomic="true">{roundLabel}</p>
+            <p className="sr-only" role="status">{roundLabel}</p>
             <table
                 className={styles.boardContainer}
-                aria-label={roundLabel}
                 style={{
                     "--board-row-count": clueRowCount + 1,
                     "--board-col-count": categories.length,
                 } as CSSProperties}
             >
+                <caption className="sr-only">{roundLabel} board. Categories are columns and clue values are rows.</caption>
                 <thead>
                     <tr>
                         {categories.map((category, index) => (
@@ -103,6 +103,8 @@ export default function GameBoard({ gameData }: { gameData: Board }) {
                                         key={`clue-${category.name || categoryIndex}-${clueIndex}`}
                                         value={(clueIndex + 1) * baseValue}
                                         clue={clue}
+                                        categoryName={category.name || "Category"}
+                                        roundLabel={roundLabel}
                                         onClueFinished={handleClueComplete}
                                     />
                                 );
