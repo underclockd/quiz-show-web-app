@@ -27,6 +27,7 @@
 
 .boardContainer tbody td {
     padding: 0;
+    position: relative;
 }
 
 .boardEmptyCell {
